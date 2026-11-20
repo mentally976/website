@@ -1,0 +1,20 @@
+{
+  "name": "@mentally/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./base.js",
+    "./next": "./next.js",
+    "./library": "./library.js"
+  },
+  "dependencies": {
+    "eslint-config-next": "16.4.6"
+  },
+  "devDependencies": {
+    "eslint": "^9"
+  },
+  "peerDependencies": {
+    "eslint": "^9"
+  }
+}

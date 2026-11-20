@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "enabledMcpjsonServers": ["supabase"],
+  "permissions": {
+    "allow": [
+      "Bash(pnpm lint)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm check)",
+      "Bash(pnpm build)",
+      "Bash(pnpm format)",
+      "Bash(pnpm format:check)",
+      "Bash(pnpm --filter @mentally/web lint)",
+      "Bash(pnpm --filter @mentally/web build)"
+    ],
+    "deny": ["Read(./apps/web/.env.local)", "Read(./**/.env.local)"]
+  }
+}
