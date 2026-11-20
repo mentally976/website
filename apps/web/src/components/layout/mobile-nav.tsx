@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState, type ReactNode } from 'react'
-import { EMERGENCY_NUMBER, NAV_LINKS } from '@/content/site'
+import { EMERGENCY_NUMBER, NAV_LINKS } from '@/content/links'
 import { cn } from '@/lib/utils'
 
 /** Full-height menu under the header on small screens. `footer` is a server-rendered auth slot. */

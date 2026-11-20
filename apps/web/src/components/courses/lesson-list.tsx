@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Play } from 'lucide-react'
 import { formatDuration, type Lesson } from '@mentally/db'
-import { COURSES_PATH } from '@/content/site'
+import { COURSES_PATH } from '@/content/links'
 import { cn } from '@/lib/utils'
 
 type Props = {

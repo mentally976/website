@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 /** Two overlapping circles: two people meeting, or a mind finding its balance. */
-export function LogoMark({ className }: { className?: string }) {
+function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden className={cn('size-7', className)}>
       <circle cx="12" cy="16" r="9" fill="currentColor" />

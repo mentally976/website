@@ -56,7 +56,7 @@ export function AdminMobileBar() {
         </div>
         <SignOutButton compact />
       </div>
-      <nav aria-label="Админ цэс" className="-mx-4 mt-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
+      <nav aria-label="Админ цэс" className="-mx-4 mt-2 [scrollbar-width:none] overflow-x-auto px-4 sm:mx-0 sm:px-0">
         <Suspense fallback={<AdminNavLinks layout="horizontal" />}>
           <ActiveAdminNav layout="horizontal" />
         </Suspense>

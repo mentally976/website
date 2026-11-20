@@ -1,4 +1,4 @@
-import { EMERGENCY_NUMBER } from './site'
+import { EMERGENCY_NUMBER } from './links'
 
 export const FAQ = [
   {

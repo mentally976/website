@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { categories } from '@mentally/db/mock'
-import { COURSES_PATH, EMERGENCY_NUMBER } from '@/content/site'
+import { COURSES_PATH, EMERGENCY_NUMBER } from '@/content/links'
 import { Logo } from './logo'
 
 const COLUMNS = [
@@ -22,7 +22,6 @@ const COLUMNS = [
     links: [
       { href: '/signup', label: 'Бүртгүүлэх' },
       { href: '/login', label: 'Нэвтрэх' },
-      { href: '/dashboard', label: 'Миний хичээлүүд' },
     ],
   },
 ]

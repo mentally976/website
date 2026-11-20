@@ -10,7 +10,7 @@ const EVENT = 'mentally:watched-change'
 
 export type WatchEntry = { courseId: string; lessonId: string; at: number }
 
-export function readWatchedRaw(): string | null {
+function readWatchedRaw(): string | null {
   try {
     return window.localStorage.getItem(KEY)
   } catch {
@@ -18,7 +18,7 @@ export function readWatchedRaw(): string | null {
   }
 }
 
-export function parseWatched(raw: string | null): WatchEntry[] {
+function parseWatched(raw: string | null): WatchEntry[] {
   if (!raw) return []
   try {
     const value: unknown = JSON.parse(raw)
@@ -39,7 +39,7 @@ export function markWatched(courseId: string, lessonId: string) {
   }
 }
 
-export function subscribeWatched(callback: () => void) {
+function subscribeWatched(callback: () => void) {
   window.addEventListener('storage', callback)
   window.addEventListener(EVENT, callback)
   return () => {

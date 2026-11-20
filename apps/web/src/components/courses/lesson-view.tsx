@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import { ArrowLeft, ArrowRight, ChevronLeft } from 'lucide-react'
 import { formatTotalTime, type CourseWithRelations, type Lesson } from '@mentally/db'
 import { buttonClasses } from '@/components/ui/button'
-import { COURSES_PATH, EMERGENCY_NUMBER } from '@/content/site'
+import { COURSES_PATH, EMERGENCY_NUMBER } from '@/content/links'
 import { GatedPlayer, PlayerSkeleton } from './gated-player'
 import { LessonList } from './lesson-list'
 

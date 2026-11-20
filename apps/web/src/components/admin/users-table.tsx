@@ -28,7 +28,10 @@ export function UsersTable({ users, caption }: { users: AdminUser[]; caption: st
             <tr key={user.id}>
               <td className="py-3 pr-4">
                 <div className="flex items-center gap-3">
-                  <span aria-hidden className="grid size-9 shrink-0 place-items-center rounded-full bg-canvas text-xs font-semibold text-ink-soft ring-1 ring-line">
+                  <span
+                    aria-hidden
+                    className="grid size-9 shrink-0 place-items-center rounded-full bg-canvas text-xs font-semibold text-ink-soft ring-1 ring-line"
+                  >
                     {initials(user.name)}
                   </span>
                   <div className="min-w-0">

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { PlayCircle } from 'lucide-react'
 import { formatTotalTime, LEVEL_LABEL, type CourseWithRelations } from '@mentally/db'
 import { TherapistAvatar } from '@/components/therapists/therapist-avatar'
-import { COURSES_PATH } from '@/content/site'
+import { COURSES_PATH } from '@/content/links'
 import { cn } from '@/lib/utils'
 
 /** What a card shows. It carries no lessons, so no video URL can reach the browser through a client component. */

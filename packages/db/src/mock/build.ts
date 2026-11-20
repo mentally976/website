@@ -4,8 +4,8 @@ import { videos } from './media'
 /** [title, minutes, summary] */
 export type LessonSeed = readonly [string, number, string]
 
-/** Turns compact seeds into lessons. The first `freePreviews` lessons can be watched without an account. */
-export function buildLessons(courseId: string, seeds: readonly LessonSeed[], freePreviews = 1): Lesson[] {
+/** Turns compact seeds into lessons. */
+export function buildLessons(courseId: string, seeds: readonly LessonSeed[]): Lesson[] {
   return seeds.map(([title, minutes, summary], index) => ({
     id: `${courseId}-${index + 1}`,
     courseId,
@@ -14,6 +14,5 @@ export function buildLessons(courseId: string, seeds: readonly LessonSeed[], fre
     summary,
     durationSeconds: Math.round(minutes * 60),
     videoUrl: videos[(index + courseId.length) % videos.length]!.url,
-    isFreePreview: index < freePreviews,
   }))
 }

@@ -1,16 +1,8 @@
+/*
+ * Landing page copy with photos. It imports the mock catalogue, so only Server Components may import this file;
+ * client components take what they need as props, and shared routes/constants live in content/links.ts.
+ */
 import { images } from '@mentally/db/mock'
-
-/** The course catalogue lives in the student app: guests must sign in to open any course or lesson. */
-export const COURSES_PATH = '/dashboard/courses'
-
-export const NAV_LINKS = [
-  { href: '/#courses', label: 'Видео хичээл' },
-  { href: '/#services', label: 'Зөвлөгөө' },
-  { href: '/therapists', label: 'Сэтгэл зүйч' },
-  { href: '/#faq', label: 'Түгээмэл асуулт' },
-] as const
-
-export const EMERGENCY_NUMBER = '103'
 
 export const CONDITIONS = [
   {

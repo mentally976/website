@@ -10,7 +10,8 @@ const onest = Onest({
 
 const unbounded = Unbounded({
   variable: '--font-unbounded',
-  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
+  // Only Latin text (logo, wordmark, numerals) uses it, so only that subset is preloaded; Cyrillic still loads on demand.
+  subsets: ['latin'],
   weight: ['500', '700', '800'],
   display: 'swap',
 })

@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { useState } from 'react'
 import { type Category } from '@mentally/db'
-import { COURSES_PATH } from '@/content/site'
+import { COURSES_PATH } from '@/content/links'
 import { cn } from '@/lib/utils'
 import { CourseCard, type CourseCardData } from './course-card'
 

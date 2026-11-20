@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { EMERGENCY_NUMBER } from '@/content/site'
+import { EMERGENCY_NUMBER } from '@/content/links'
 import { ActiveAppNav, AppNavLinks } from './app-nav'
 import { ActiveAppTabBar, AppTabBarLinks } from './app-tab-bar'
 import { AppUser, AppUserSkeleton } from './app-user'

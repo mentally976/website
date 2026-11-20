@@ -32,7 +32,6 @@ export interface Lesson {
   summary: string
   durationSeconds: number
   videoUrl: string
-  isFreePreview: boolean
 }
 
 export interface Course {

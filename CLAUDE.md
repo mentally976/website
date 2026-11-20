@@ -33,16 +33,18 @@ Vercel project: Root Directory `apps/web`, Framework Preset Next.js (a repo-root
 - Keep `page.tsx` / `layout.tsx` as Server Components; put interactivity in small `'use client'` components.
 - Animate `transform` and `opacity` only, and respect `prefers-reduced-motion` (already handled globally in `globals.css`).
 - Use `next/image` (`preload` instead of the deprecated `priority`). Remote hosts must be listed in `next.config.ts`.
+- Keep the public pages (`/`, `/therapists`) fully static (`○` in `pnpm build`): nothing under `(site)` may read the session, cookies or headers. Signed-in users never see them, so the header shows guest actions only.
+- Client components must not import `content/site.ts` or `@mentally/db/mock`: they drag the whole mock catalogue into the browser bundle. Use `content/links.ts` (import-free) and pass data as props.
 
 ## Auth (Supabase, `@supabase/ssr`)
 
-- Clients: `lib/supabase/client.ts` (browser), `server.ts` (RSC / actions / route handlers, one per request), `public.ts` (cookie-less, for cached public reads), `proxy.ts` (session refresh in `src/proxy.ts`).
+- Clients: `server.ts` (RSC / actions / route handlers, one per request), `public.ts` (cookie-less, for cached public reads), `proxy.ts` (session refresh in `src/proxy.ts`).
 - Session reads go through `lib/auth.ts` (`getUser`, `requireUser`). It uses `getClaims()`, which verifies the JWT. Never trust `getSession()` on the server.
 - `proxy.ts` only does optimistic redirects (`/dashboard` → `/login`). Re-check auth next to the data (pages, actions, route handlers).
 - Email links land on `/auth/callback` (PKCE `code` or `token_hash`). Supabase dashboard → Auth → URL Configuration must allow `<site>/auth/callback` (`http://localhost:3000/**` is already allowed).
 - Google sign-in: `signInWithGoogle` in `app/(auth)/actions.ts` → Google → Supabase → `/auth/callback?next=…`. Google Cloud project `mentally-515305`, OAuth client "Mentally Web (Supabase)", redirect URI `https://gwpulzdfszjxlnyclawa.supabase.co/auth/v1/callback`. The consent screen is in **Testing**: only listed test users can sign in until it is published (Google Auth Platform → Audience).
 - Never use `user_metadata` for authorization; it is user-editable. Never put the service-role / secret key in a `NEXT_PUBLIC_` variable.
-- Shells: guests see only the `(site)` landing page (plus `/therapists`, login, signup) with header + footer. Every course and lesson lives in `(app)` under `/dashboard/courses` (`COURSES_PATH` in `content/site.ts`), so guests must sign in to open one; old `/courses*` links are redirected there by `proxy.ts`. Signed-in students are sent from `/` and `/therapists` to `/dashboard`.
+- Shells: guests see only the `(site)` landing page (plus `/therapists`, login, signup) with header + footer. Every course and lesson lives in `(app)` under `/dashboard/courses` (`COURSES_PATH` in `content/links.ts`), so guests must sign in to open one; old `/courses*` links are redirected there by `proxy.ts`. Signed-in students are sent from `/` and `/therapists` to `/dashboard`.
 - Admin: `/admin` (`(admin)` group) is only for the emails in the server-only `ADMIN_EMAILS` env var (`.env.local` and Vercel; unset = nobody). The repo is public: never commit the admin address. `proxy.ts` routes optimistically; `requireAdmin()` in `lib/admin.ts` re-checks against the Auth server. Users are listed with the Auth admin API via `lib/supabase/admin.ts` (`SUPABASE_SECRET_KEY`, server-only).
 
 ## Data: mock today, Supabase tomorrow
@@ -50,7 +52,7 @@ Vercel project: Root Directory `apps/web`, Framework Preset Next.js (a repo-root
 `apps/web/src/lib/data.ts` is the only place pages get catalogue data. It returns mock data from `@mentally/db/mock` now.
 To go live: apply the migrations, seed the tables, then replace each function body with a `createPublicClient()` query mapped to the types in `@mentally/db`. Components don't change.
 
-- No free previews and no public catalogue: every course page is behind sign-in, and `components/courses/gated-player.tsx` still re-checks the session before sending a video URL. `isFreePreview` / `is_free_preview` and the public `lesson-previews` bucket in the migrations are unused; drop them before going live. When videos move to Supabase Storage, keep full lessons in the private `lesson-videos` bucket and hand out short-lived signed URLs from the server.
+- No free previews and no public catalogue: every course page is behind sign-in, and `components/courses/gated-player.tsx` re-checks the session (redirecting to sign-in) before sending a video URL. The DB column `is_free_preview` and the public `lesson-previews` bucket in the migrations are unused; drop them before going live.
 - Mentally has **one** psychologist who prepares every course: read it with `getTherapist()` and write copy in the singular (сэтгэл зүйч, not сэтгэл зүйчид). The profile (`packages/db/src/mock/therapists.ts`) is Даваабаатарын Энхтөгөлдөр; only the name is confirmed. Never invent a photo, experience or specialties for a real person: leave them empty (the UI shows initials and hides the rest) until the owner supplies them.
 - Watch history is in `localStorage` (`lib/progress.ts`) until it is written to `lesson_progress`.
 - Media: Unsplash photos (Unsplash License) and Mixkit videos (Mixkit free licence), listed in `packages/db/src/mock/media.ts` and `fact-media.ts`.

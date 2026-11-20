@@ -4,7 +4,7 @@ import { Check, ChevronLeft } from 'lucide-react'
 import { formatTotalTime, LEVEL_LABEL, type CourseWithRelations } from '@mentally/db'
 import { TherapistAvatar } from '@/components/therapists/therapist-avatar'
 import { ButtonLink } from '@/components/ui/button'
-import { COURSES_PATH } from '@/content/site'
+import { COURSES_PATH } from '@/content/links'
 import { LessonList } from './lesson-list'
 
 type Props = {

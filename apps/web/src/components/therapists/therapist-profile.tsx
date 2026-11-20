@@ -62,9 +62,7 @@ export function TherapistProfile({ therapist, as: Heading = 'h2', id, eyebrow = 
           </ul>
         )}
 
-        {therapist.courseCount ? (
-          <p className="mt-6 text-muted">Mentally дээрх {therapist.courseCount} хичээлийг бүгдийг нь өөрөө бэлтгэсэн.</p>
-        ) : null}
+        {therapist.courseCount ? <p className="mt-6 text-muted">Mentally дээрх {therapist.courseCount} хичээлийг бүгдийг нь өөрөө бэлтгэсэн.</p> : null}
         {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
       </div>
     </div>

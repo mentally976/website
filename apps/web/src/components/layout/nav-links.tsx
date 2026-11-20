@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NAV_LINKS } from '@/content/site'
+import { NAV_LINKS } from '@/content/links'
 import { cn } from '@/lib/utils'
 
 export function NavLinks({ activePath }: { activePath?: string }) {
