@@ -15,6 +15,8 @@ Audience: Mongolia. All user-facing copy is Mongolian (Cyrillic, incl. Ө ө Ү 
 | `packages/typescript-config` | Shared `tsconfig` bases                                                                       |
 | `supabase/migrations`        | SQL schema, RLS policies, storage buckets                                                     |
 
+Vercel project: Root Directory `apps/web`, Framework Preset Next.js (a repo-root build fails with "No Output Directory named public"). Every env var the app reads must also be listed in `turbo.json` → `tasks.build.env`, or Turborepo hides it from the build.
+
 ## Commands (run from the repo root)
 
 - `pnpm dev` – dev server (http://localhost:3000)
